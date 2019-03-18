@@ -10,9 +10,9 @@ my $scripturl = "index.cgi";
 my $result = "";
 
 my %p = parseform(querystring());
-my $sentence = regularize($p{sentence});
+my $sentence = $p{sentence};
 if ($sentence ne "") {
-	$result = conv2arde($sentence);
+	$result = conv2arde(regularize($sentence));
 }
 
 screen($scripturl, $sentence, $result);
@@ -160,4 +160,5 @@ sub conv2arde
 	}
 	$r .= "。" if ($fPeriod);
 	$r .= "？" if ($fQuestion);
+	return $r;
 }
